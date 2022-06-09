@@ -68,11 +68,13 @@ func main() {
 		panic(err)
 	}
 
-	cmd = exec.Command("docker", append([]string{"push"}, tags...)...)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	err = cmd.Run()
-	if err != nil {
-		panic(err)
+	for _, t := range tags {
+		cmd = exec.Command("docker", "push", t)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		err := cmd.Run()
+		if err != nil {
+			panic(err)
+		}
 	}
 }

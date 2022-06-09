@@ -10,6 +10,14 @@ ARG VERSION
 
 ARG VERSION_URL
 
+ARG SAVE_DIR=$HOME/saves
+
+ARG LOG_FILE=$HOME/server.log
+
+ARG SERVER_NAME
+
+ARG WORLD_NAME
+
 RUN apt-get update && \
     apt-get install -y \
     wget \
