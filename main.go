@@ -45,12 +45,16 @@ func main() {
 		"build",
 		"--build-arg", fmt.Sprintf("%s=%s", "VERSION", sv),
 		"--build-arg", fmt.Sprintf("%s=%s", "VERSION_URL", link),
-		"-t",
 	}
 
+	tags := make([]string, 0, len(URLs))
 	for _, t := range URLs {
-		opts = append(opts, t+":"+sv)
-		opts = append(opts, t+":latest")
+		tags = append(tags, t+":"+sv)
+		tags = append(tags, t+":latest")
+	}
+
+	for _, t := range tags {
+		opts = append(opts, "-t", t)
 	}
 
 	opts = append(opts, ".")
@@ -60,6 +64,14 @@ func main() {
 	cmd.Stderr = os.Stderr
 
 	err := cmd.Run()
+	if err != nil {
+		panic(err)
+	}
+
+	cmd = exec.Command("docker", append([]string{"push"}, tags...)...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err = cmd.Run()
 	if err != nil {
 		panic(err)
 	}
