@@ -42,9 +42,10 @@ func main() {
 	}
 
 	opts := []string{
-		"build", "-t",
+		"build",
 		"--build-arg", fmt.Sprintf("%s=%s", "VERSION", sv),
 		"--build-arg", fmt.Sprintf("%s=%s", "VERSION_URL", link),
+		"-t",
 	}
 
 	for _, t := range URLs {
