@@ -10,13 +10,15 @@ ARG VERSION
 
 ARG VERSION_URL
 
-ARG SAVE_DIR=$HOME/saves
+ENV SAVE_DIR=$HOME/saves
 
-ARG LOG_FILE=$HOME/server.log
+ENV LOG_FILE=$HOME/server.log
 
-ARG SERVER_NAME
+ENV SERVER_NAME="Host Factor V Rising Server"
 
-ARG WORLD_NAME
+ENV SAVE_NAME="world1"
+
+STOPSIGNAL SIGTERM
 
 RUN apt-get update && \
     apt-get install -y \
