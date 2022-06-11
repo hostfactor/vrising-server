@@ -12,5 +12,61 @@
 ## Basic usage
 
 ```
-docker run -p 9876:9876/udp hostfactor/vrising-server
+docker run -v /my/folder:/root/saves -p 9876:9876/udp hostfactor/vrising-server
 ```
+
+Where `/my/folder` is an empty folder on your computer. If you don't add the `-v` bit, your server save will be lost
+after the Docker container exits.
+
+> You can also run a specific version by using `docker run [...] hostfactor/vrising-server:0.5.41821`
+
+Once the server is ready you'll see a message appear that says.
+
+> Your V Rising server is ready!
+
+The game can typically take ~5 minutes to start.
+
+Once you see that message, go to V Rising
+
+1. Click `Online Play`
+2. Select a game mode
+3. Click `Display all Servers & Settings`
+4. `Direct Connect`
+5. enter `127.0.0.1`
+
+## Using existing saves
+
+If you want to bring an existing save, simply find the folder housing your server saves
+
+Copy that path in your folder's address bar and run the server with
+
+```
+docker run -e SAVE_NAME=world1 -v /my/save/path:/root/saves -p 9876:9876/udp hostfactor/vrising-server
+```
+
+Replace `world1` with the name of the folder in your saves folder.
+
+The above command will allow your Docker container to access the save folder on your computer
+
+## Configuring your server
+
+The server is configured via the `ServerGameSettings.json` and `ServerHostSettings.json` files. You can find more about
+their
+structure online, but they can be used within your Docker server with the following command.
+
+```
+docker run -v /my/settings/path:/root/vrising/VRisingServer_Data/StreamingAssets/Settings -p 9876:9876/udp hostfactor/vrising-server
+```
+
+Where `/my/settings/path` is the absolute path to your settings folder which houses the `*.json` files.
+
+## Variables
+
+You can configure quite a bit through passing `-e` flags into your `docker run` commands e.g.
+
+| Name          | Default                       | Description                                     |
+|---------------|-------------------------------|-------------------------------------------------|
+| `SAVE_NAME`   | `world1`                      | The name of the folder under the `SAVE_DIR`     |
+| `SAVE_DIR`    | `/root/saves`                 | The absolute path to the save folder.           |
+| `SERVER_NAME` | `Host Factor V Rising Server` | The name of the server as it appears in-game    |
+| `LOG_FILE`    | `/root/server.log`            | The absolute path where the log file is stored. |

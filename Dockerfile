@@ -64,6 +64,11 @@ COPY start.sh start.sh
 
 RUN chmod +x start.sh
 
+# Copy renfield
+COPY renfield/renfield renfield
+
+RUN chmod +x renfield
+
 LABEL org.opencontainers.image.description="V Rising Linux version ${VERSION}. See changelog here: ${VERSION_URL}."
 LABEL org.opencontainers.image.url='ghcr.io/hostfactor/vrising-server'
 LABEL org.opencontainers.image.version=${VERSION}
