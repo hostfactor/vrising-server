@@ -7,9 +7,10 @@
   <a aria-label="Build status" href="https://github.com/hostfactor/vrising-server/actions/workflows/build_latest.yml">
     <img src="https://img.shields.io/github/workflow/status/hostfactor/vrising-server/Build%20latest?style=for-the-badge&labelColor=1b1c1d" alt="">
   </a>
+  <a aria-label="Latest Docker version" href="https://hub.docker.com/repository/docker/hostfactor/vrising-server">
+    <img src="https://img.shields.io/docker/v/hostfactor/vrising-server?style=for-the-badge&labelColor=1b1c1d" alt="">
+  </a>
 </p>
-
-![Docker Image Version (latest by date)](https://img.shields.io/docker/v/hostfactor/vrising-server?style=for-the-badge)
 
 ## Basic usage
 
