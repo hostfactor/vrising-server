@@ -9,6 +9,8 @@
   </a>
 </p>
 
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/hostfactor/vrising-server?style=for-the-badge)
+
 ## Basic usage
 
 ```
@@ -23,8 +25,6 @@ after the Docker container exits.
 Once the server is ready you'll see a message appear that says.
 
 > Your V Rising server is ready!
-
-The game can typically take ~5 minutes to start.
 
 Once you see that message, go to V Rising
 
