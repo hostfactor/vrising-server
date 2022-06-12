@@ -61,6 +61,18 @@ docker run -v /my/settings/path:/root/vrising/VRisingServer_Data/StreamingAssets
 
 Where `/my/settings/path` is the absolute path to your settings folder which houses the `*.json` files.
 
+### Custom args
+
+The server also supports custom arguments that can be passed into the server command line.
+See [here](https://github.com/StunlockStudios/vrising-dedicated-server-instructions#configuring-the-server) for
+additional arguments.
+
+```
+docker run -v /my/folder:/root/saves -p 9876:9876/udp hostfactor/vrising-server -lan
+```
+
+The above puts the server in LAN mode allowing for offline play.
+
 ## Variables
 
 You can configure quite a bit through passing `-e` flags into your `docker run` commands e.g.
@@ -75,7 +87,7 @@ You can configure quite a bit through passing `-e` flags into your `docker run` 
 
 ## HTTP API
 
-The available HTTP APIs made available through `renfield` if `RENFIELD_SERVER_PORT` is set e.g.
+HTTP APIs are made available through `renfield` if `RENFIELD_SERVER_PORT` is set e.g.
 
 ```
 docker run -v /my/folder:/root/saves -p 9876:9876/udp -p 8080:8080 -e RENFIELD_SERVER_PORT=8080 hostfactor/vrising-server

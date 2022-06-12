@@ -80,4 +80,4 @@ EXPOSE 9876/udp
 
 EXPOSE 9877/udp
 
-CMD ["./start.sh"]
+ENTRYPOINT ["./start.sh"]
