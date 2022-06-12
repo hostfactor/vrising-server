@@ -18,6 +18,8 @@ ENV SERVER_NAME="Host Factor V Rising Server"
 
 ENV SAVE_NAME="world1"
 
+ENV RENFIELD_SERVER_PORT=""
+
 STOPSIGNAL SIGTERM
 
 RUN apt-get update && \

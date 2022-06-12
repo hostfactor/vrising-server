@@ -65,9 +65,22 @@ Where `/my/settings/path` is the absolute path to your settings folder which hou
 
 You can configure quite a bit through passing `-e` flags into your `docker run` commands e.g.
 
-| Name          | Default                       | Description                                     |
-|---------------|-------------------------------|-------------------------------------------------|
-| `SAVE_NAME`   | `world1`                      | The name of the folder under the `SAVE_DIR`     |
-| `SAVE_DIR`    | `/root/saves`                 | The absolute path to the save folder.           |
-| `SERVER_NAME` | `Host Factor V Rising Server` | The name of the server as it appears in-game    |
-| `LOG_FILE`    | `/root/server.log`            | The absolute path where the log file is stored. |
+| Name                   | Default                       | Description                                                                            |
+|------------------------|-------------------------------|----------------------------------------------------------------------------------------|
+| `SAVE_NAME`            | `world1`                      | The name of the folder under the `SAVE_DIR`                                            |
+| `SAVE_DIR`             | `/root/saves`                 | The absolute path to the save folder.                                                  |
+| `SERVER_NAME`          | `Host Factor V Rising Server` | The name of the server as it appears in-game                                           |
+| `LOG_FILE`             | `/root/server.log`            | The absolute path where the log file is stored.                                        |
+| `RENFIELD_SERVER_PORT` |                               | The port number to start the HTTP server. If not specified, the server is not started. |
+
+## HTTP API
+
+The available HTTP APIs made available through `renfield` if `RENFIELD_SERVER_PORT` is set e.g.
+
+```
+docker run -v /my/folder:/root/saves -p 9876:9876/udp -p 8080:8080 -e RENFIELD_SERVER_PORT=8080 hostfactor/vrising-server
+```
+
+| Path                | Method | Description                                                  | Request schema | Response schema |
+|---------------------|--------|--------------------------------------------------------------|----------------|-----------------|
+| `/api/server/ready` | `GET`  | Returns 200 when the server is ready and a non-200 when not. |                |                 |
