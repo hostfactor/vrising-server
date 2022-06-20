@@ -22,18 +22,19 @@ ENV RENFIELD_SERVER_PORT=""
 
 STOPSIGNAL SIGTERM
 
-RUN sudo apt-get update && \
+RUN apt-get update && \
     apt-get install -y \
     wget \
     software-properties-common \
-    xvfb
+    xvfb \
+    sudo
 
-RUN dpkg --add-architecture i386
+RUN sudo dpkg --add-architecture i386
 
 ## Add steamcmd
 RUN echo steam steam/question select "I AGREE" | debconf-set-selections  && echo steam steam/license note '' | debconf-set-selections
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN sudo apt-get update && apt-get install -y --no-install-recommends \
     steamcmd \
     locales
 
