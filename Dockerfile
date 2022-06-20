@@ -26,15 +26,14 @@ RUN apt-get update && \
     apt-get install -y \
     wget \
     software-properties-common \
-    xvfb \
-    sudo
+    xvfb
 
-RUN sudo dpkg --add-architecture i386
+RUN dpkg --add-architecture i386
 
 ## Add steamcmd
 RUN echo steam steam/question select "I AGREE" | debconf-set-selections  && echo steam steam/license note '' | debconf-set-selections
 
-RUN sudo apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     steamcmd \
     locales
 
@@ -46,15 +45,8 @@ ENV LANGUAGE 'en_US:en'
 RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
 
 ## Add wine
-RUN wget -nc https://dl.winehq.org/wine-builds/winehq.key && \
-    mv winehq.key /usr/share/keyrings/winehq-archive.key
-
-RUN wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources && \
-    mv winehq-jammy.sources /etc/apt/sources.list.d/
-
-RUN sudo apt-get update && \
-    apt-get install -y wine-staging &&  \
-    apt-get install -y --install-recommends winehq-staging
+RUN apt-get update && \
+    apt-get install -y wine
 
 RUN wine --version
 
