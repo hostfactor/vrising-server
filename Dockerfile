@@ -52,7 +52,8 @@ RUN wget -nc https://dl.winehq.org/wine-builds/winehq.key && \
 RUN wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources && \
     mv winehq-jammy.sources /etc/apt/sources.list.d/
 
-RUN sudo apt-get update &&  \
+RUN sudo apt-get update && \
+    apt-get install -y wine-staging &&  \
     apt-get install -y --install-recommends winehq-staging
 
 RUN wine --version
