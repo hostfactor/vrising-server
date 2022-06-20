@@ -22,7 +22,7 @@ ENV RENFIELD_SERVER_PORT=""
 
 STOPSIGNAL SIGTERM
 
-RUN apt-get update && \
+RUN sudo apt-get update && \
     apt-get install -y \
     wget \
     software-properties-common \
@@ -51,7 +51,7 @@ RUN wget -nc https://dl.winehq.org/wine-builds/winehq.key && \
 RUN wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources && \
     mv winehq-jammy.sources /etc/apt/sources.list.d/
 
-RUN apt-get update &&  \
+RUN sudo apt-get update &&  \
     apt-get install -y --install-recommends winehq-staging
 
 RUN wine --version
